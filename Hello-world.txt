@@ -1,0 +1,42 @@
+Hello World
+docker pull hello-world
+docker run hello-world
+
+Commands
+docker images
+docker ps
+docker ps -a
+docker rmi IMAGE_ID
+
+Nginx Port 8080
+docker pull nginx
+docker run -d -p 8080:80 --name nginx-container nginx
+
+Image Tagging
+docker pull nginx
+docker tag nginx myapp:1.0
+docker images
+docker rmi nginx
+
+Node.js
+docker pull node
+docker run --rm -v "%cd%:/app" -w /app node node app.js
+
+Dockerfile
+docker build -t myapp:1.0 .
+docker run -d -p 8080:80 --name myapp-container myapp:1.0
+
+Volume
+docker volume create myvolume
+docker pull ubuntu
+docker run --name container1 -v myvolume:/data ubuntu bash -c "echo Hello Docker > /data/test.txt"
+docker rm container1
+docker run --name container2 -v myvolume:/data ubuntu cat /data/test.txt
+
+Container Lifecycle
+docker pull ubuntu
+docker run -dit --name mycontainer ubuntu
+docker stop mycontainer
+docker start mycontainer
+docker restart mycontainer
+docker rm mycontainer
